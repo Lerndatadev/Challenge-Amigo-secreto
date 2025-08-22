@@ -38,3 +38,48 @@ function mostrarNombres() {
         lista.appendChild(li);
     }
 }
+
+
+//  función sortear amigo
+
+let intentos = 0;
+const nombresSorteados = [];
+
+function sortearAmigo() {
+    if (nombres.length === 0) {
+        alert("No hay amigos para sortear.");
+        return;
+    }
+
+    // Filtrar los nombres que aún no han sido sorteados
+    const disponibles = nombres.filter(nombre => !nombresSorteados.includes(nombre));
+
+    if (disponibles.length === 0) {
+        alert("Todos los amigos ya han sido sorteados. La lista se reiniciará.");
+        nombresSorteados.length = 0;
+        document.getElementById("resultado").innerHTML = "";
+        intentos = 0;
+        // Reinicia la lista principal de nombres
+        nombres.length = 0;
+        mostrarNombres();
+        return;
+    }
+
+    if (intentos < 3) {
+        const indiceAleatorio = Math.floor(Math.random() * disponibles.length);
+        const nombreSorteado = disponibles[indiceAleatorio];
+        nombresSorteados.push(nombreSorteado);
+
+        const resultado = document.getElementById("resultado");
+        resultado.innerHTML += `<li>${nombreSorteado}</li>`;
+        intentos++;
+    } else {
+        alert("Has realizado 3 sorteos. La lista se reiniciará para ingresar nuevos nombres.");
+        nombresSorteados.length = 0;
+        document.getElementById("resultado").innerHTML = "";
+        intentos = 0;
+        // Reinicia la lista principal de nombres
+        nombres.length = 0;
+        mostrarNombres();
+    }
+}
