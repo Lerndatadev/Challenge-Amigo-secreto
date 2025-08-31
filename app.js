@@ -71,7 +71,7 @@ function sortearAmigo() {
         nombresSorteados.push(nombreSorteado);
 
         const resultado = document.getElementById("resultado");
-        resultado.innerHTML += `<li>${nombreSorteado}</li>`;
+        resultado.innerHTML += `El amigo Secreto es: <li>${nombreSorteado}</li>`;
         intentos++;
     } else {
         alert("Has realizado 3 sorteos. La lista se reiniciará para ingresar nuevos nombres.");
